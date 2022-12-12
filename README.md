@@ -22,7 +22,7 @@ Node.js is an open-source, cross-platform JavaScript runtime environment with a 
 
 Visual Studio Code, also commonly referred to as VS Code, is a source-code editor made by Microsoft with the Electron Framework, for Windows, Linux and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git. Users can change the theme, keyboard shortcuts, preferences, and install extensions that add additional functionality.
 
-### [Truffle](https://trufflesuite.com/]\)
+### [Truffle](https://trufflesuite.com/)
 
 Truffle Suite provides world class development environment for blockchain dapps.
 ### [Ganache](https://trufflesuite.com/ganache/)
