@@ -2,7 +2,7 @@
 Smart contract build with solidity and web3 python library. This project was made to help beginners in blockchain development to exercese their skills
 
 ## Technology & Tools
-- [Solidity](https://docs.soliditylang.org/en/v0.8.17/)
+### [Solidity](https://docs.soliditylang.org/en/v0.8.17/)
 Solidity is an object-oriented, high-level language for implementing smart contracts. Smart contracts are programs which govern the behaviour of accounts within the Ethereum state.
 - [Python](https://docs.soliditylang.org/en/v0.8.17/)
 Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Python is dynamically-typed and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented and functional programming. It is often described as a "batteries included" language due to its comprehensive standard library.[
