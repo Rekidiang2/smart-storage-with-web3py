@@ -23,4 +23,14 @@ Smart contract build with solidity and web3 python library. This project was mad
 ### [Ganache](https://trufflesuite.com/ganache/)
 > Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
 ## Steps
+### Install python
+### Create a virtual environment (python -m venv venv)
+### Install IDE (visual studio code or other)
+### install vs code extension :  install python intellisense, solidity, and ..
+### Check python installation open terminal include in vs code check python's version by python --version
+### set python formatting provider to black (vs code settings)
+### create smartStorage.sol which will contain our smart contract code
+### Deploy our smart contract with python
+create deploy.py which will contain our smart contract deployment code 
+Install py-solc-s (solidity compiler) pip install py-solc-x 
 ## How to run
