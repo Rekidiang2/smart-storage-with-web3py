@@ -26,8 +26,6 @@ Visual Studio Code, also commonly referred to as VS Code, is a source-code edito
 
 Truffle Suite provides world class development environment for blockchain dapps.
 ### [Ganache](https://trufflesuite.com/ganache/)
-
-Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
-- 
+> Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
 ## Steps
 ## How to run
