@@ -31,8 +31,8 @@ def main():
 
     html_temp = """
     <div style="background-color:black;padding:0.5px">
-    <h1 style="color:white;text-align:center;">Smart Storage </h1>
-    <h3 style="color:red;text-align:center;">Smart contract build with solidity deploy with python </h3>
+    <h2 style="color:white;text-align:center;">Smart Storage </h2>
+    <h4 style="color:red;text-align:center;">Web 3.0 prpject build with solidity deploy with python </h4>
     </div><br>"""
     st.markdown(html_temp, unsafe_allow_html=True)
     st.markdown('<style>h1{color: blue;}</style>', unsafe_allow_html=True)

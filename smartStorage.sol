@@ -5,7 +5,7 @@ pragma solidity ^0.6.0;
 
 contract smartStorage {
     //This will initilized to 0!
-    uint256 public favoriteNumber;
+    uint256 public favoriteNumber = 666;
 
     struct People {
         uint256 favoriteNumber;

@@ -92,12 +92,11 @@ RPC_SERVER = "HTTP://127.0.0.1:7545"
 def app():
     # Data input --------------------------------------------------------------------------
     #def input_feature():
-        
-    st.header("1. Compile Smart Contract")
+    st.subheader("1. Compile Smart Contract")
+    
     with open("smartStorage.sol", "r") as file:
         simple_storage_file = file.read()
-    if st.checkbox("Smart Contact in Solidity"):
-        st.write(simple_storage_file)
+    
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -115,34 +114,38 @@ def app():
     ## GRABE SMART CONTRACT FILE #################################
     
     # Extract compiled smart contract
+    if st.checkbox("Smart Contact in Solidity"):
+        st.write(simple_storage_file)
+
     compiled_sol = compile_contract(simple_storage_file)
     if st.checkbox("Smart contract Compiled"):
         st.write(compiled_sol)
 
-    st.header("2. Build and Deploy Smart Contract")
+    st.markdown("---")
+    st.subheader("2. Build and Deploy Smart Contract")
+    
     # get bytecode and abi
     bytecode, abi = bytecode_abi(compiled_sol)
     menu = ["Ganache (Local Network)", "Goerli (Testnet)"]
-    st.markdown("#### 2.1. Select Blockchain Network")
-    choice = st.radio("Blockchain Network", menu)
+    st.markdown("##### 2.1. Select Blockchain Network")
+    choice = st.radio("", menu)
     if choice == "Ganache (Local Network)":
-        st.subheader("2.1.1. Ganache (Local Network)")
         RPC_SERVER = "HTTP://127.0.0.1:7545"
         w3 = Web3(Web3.HTTPProvider(RPC_SERVER))
     
-    st.markdown("#### Create Smart contract")
+    st.markdown("##### 2.2. Create Smart contract")
+    st.write("To create or build a Smart contract we need RPC_SERVER, abi and bytecode")
     if st.checkbox("Create Contract"):
         smartStorage = create_contract(RPC_SERVER,abi, bytecode)        
         st.write("Contract Created Successfully")
-        if st.checkbox("Check Created Contract"):
-            st.write(smartStorage)
+        
         st.markdown("---")
         
         
 
         ## Make contract deployment transaction #################################
         # 1. Build a deployment Transaction
-        st.markdown("#### Build contract Deployment Transaction")
+        st.markdown("##### 2.3. Build contract Deployment Transaction")
         st.write("Element need to build a contract")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -159,13 +162,13 @@ def app():
                 st.write(nonce)
                 # user_input = st.text_input("Patient Name")    
         
-        if st.checkbox("See builded transaction"):
+        if st.checkbox("Look at builded transaction"):
             el = [NETWORK_ID, gasPrice, MY_ADDRESS, nonce]  
             transaction = build_trans(smartStorage, el)
             st.write(transaction)
         st.markdown("---")
         
-        st.markdown("#### Sign Contract Deployment Transaction")
+        st.markdown("##### 2.4. Sign Contract Deployment Transaction")
         PRIVATE_KEY = st.text_input("Privale Key")
         if st.button("Sign Transaction"):
             el = [NETWORK_ID, gasPrice, MY_ADDRESS, nonce]  
@@ -182,8 +185,10 @@ def app():
             tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
             #Wait for block confirmations
             tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
-            st.write(f"Contrad Deployed on : {tx_receipt['contractAddress']}")
             st.balloons() 
+            st.sidebar.markdown("---")
+            st.sidebar.write(f"Contrad Deployed at : {tx_receipt['contractAddress']}")
+            st.sidebar.write(f"Current Stored Value : {simple_storage.functions.retrieve().call()}")
 
                 
         st.markdown("---")
@@ -229,15 +234,70 @@ def app():
 # == Analysis =============================================================================================
 def analysis():
    
-    st.header("Interact with Smart Contract")
-    st.markdown("### 1. View the stored value")
+    st.subheader("Interact with Smart Contract")
     w3 = Web3(Web3.HTTPProvider(RPC_SERVER))
+    nonce = w3.eth.getTransactionCount(my_address)
+    transaction = smartStorage.constructor().buildTransaction(
+    {
+        "chainId": chain_id,
+        "gasPrice": w3.eth.gas_price,
+        "from": my_address,
+        "nonce": nonce,
+    }
+)
+    signed_txn = w3.eth.account.sign_transaction(transaction, private_key=private_key)
+    tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     simple_storage = w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
-    st.write(f"Initial Stored Value {simple_storage.functions.retrieve().call()}")
+    
 
-    if st.button("Current Stored Value"):
-        st.write(smartStorage.functions.retrieve().call())
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        pass
+    with col2:
+        st.subheader(f"Current Value : {simple_storage.functions.retrieve().call()}")
+        #if st.button("Initial Value"):
+            #install_solc("0.6.0")
+            #st.write("Compiler Intalled ")
+    with col3:
+            pass
+   
+
+    st.markdown("#### 2. Update stored value")
+    PRIVATE_KEY = st.text_input("Enter value for update")
+    st.markdown("###### Element need to build a contract")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        NETWORK_ID = int(st.text_input("Enter Chain-ID", '0'))
+    with col2:
+        if st.checkbox("Get GasPrice"):
+            gasPrice = w3.eth.gas_price
+            st.write(gasPrice)
+    with col3:
+        MY_ADDRESS = st.text_input("Public Key")
+    with col4:
+        if st.checkbox("Get Nonce"):
+            nonce = w3.eth.getTransactionCount(MY_ADDRESS)
+            st.write(nonce)
+            # user_input = st.text_input("Patient Name")    
+    
+    if st.checkbox("Look at builded transaction"):
+        el = [NETWORK_ID, gasPrice, MY_ADDRESS, nonce]  
+        transaction = build_trans(smartStorage, el)
+        st.write(transaction)
+
+    PRIVATE_KEY = st.text_input("Privale Key")
+    if st.button("Sign Transaction"):
+        signed_greeting_txn = w3.eth.account.sign_transaction(
+                greeting_transaction, private_key=private_key
+        )
+        tx_greeting_hash = w3.eth.send_raw_transaction(signed_greeting_txn.rawTransaction)
+        print("Updating stored Value...")
+        tx_receipt = w3.eth.wait_for_transaction_receipt(tx_greeting_hash)
+        #st.write(signed_txn)
+        st.balloons() 
+    st.markdown("---")
+    st.subheader(f"Current Stored Value : {simple_storage.functions.retrieve().call()}")
 """"
     st.markdown("### 1. Update value value")
     # Working with deployed Contracts
