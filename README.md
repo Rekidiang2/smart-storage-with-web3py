@@ -22,15 +22,27 @@ Smart contract build with solidity and web3 python library. This project was mad
 > Truffle Suite provides world class development environment for blockchain dapps.
 ### [Ganache](https://trufflesuite.com/ganache/)
 > Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
+
+### [MetaMask](https://metamask.io/)
+> MetaMask is a software cryptocurrency wallet used to interact with the Ethereum blockchain. It allows users to access their Ethereum wallet through a browser extension or mobile app, which can then be used to interact with decentralized applications. (MetaMask chrom extension ID : nkbihfbeogaeaoehlefnkodbefgpgknn)
+
+### Ethereum Testnet fauset
+- Goerli testnet (https://goerli-faucet.pk910.de/) (https://goerlifaucet.com/)
 ## Steps
-### Install python
-### Create a virtual environment (python -m venv venv)
-### Install IDE (visual studio code or other)
-### install vs code extension :  install python intellisense, solidity, and ..
-### Check python installation open terminal include in vs code check python's version by python --version
-### set python formatting provider to black (vs code settings)
-### create smartStorage.sol which will contain our smart contract code
+### Installation and settings
+1. Install python
+2. Create a virtual environment (python -m venv venv)
+3. Install IDE (visual studio code or other)
+4. install vs code extension :  install python intellisense, solidity, and ..
+5. Check python installation open terminal include in vs code check python's version by python --version
+6. set python formatting provider to black (vs code settings)
+7. create smartStorage.sol which will contain our smart contract code
+8. Install ganache ([Click Here](https://trufflesuite.com/ganache/))
 ### Deploy our smart contract with python
-create deploy.py which will contain our smart contract deployment code 
-Install py-solc-s (solidity compiler) pip install py-solc-x 
+1. create deploy.py which will contain our smart contract deployment code 
+2. Install py-solc-s (solidity compiler) pip install py-solc-x
+3. Open Ganache UI (local blockchain for development testing)
+4. Install web3.py (pip install web3) to deploy and interact with the smart contract via python
+5. Install python-dotenv (pip install python-dotenv) to reads key-value pairs from a .env file and can set them as environment variables.
+
 ## How to run
