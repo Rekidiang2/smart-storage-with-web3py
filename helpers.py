@@ -238,7 +238,7 @@ def analysis():
 
     if st.button("Current Stored Value"):
         st.write(smartStorage.functions.retrieve().call())
-
+""""
     st.markdown("### 1. Update value value")
     # Working with deployed Contracts
     w3 = Web3(Web3.HTTPProvider(RPC_SERVER))
@@ -282,6 +282,7 @@ def analysis():
     print("Updating stored Value...")
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_greeting_hash)
     print(smartStorage.functions.retrieve().call())
+    """
 
 
     

@@ -4,7 +4,8 @@ import json
 import os
 from dotenv import load_dotenv
 from web3 import Web3
-from helpers import app, analysis, all_data, about, footer, logo
+from helpers import *
+from deploy import *
 
 
 # Sidebar Configuration
@@ -44,7 +45,6 @@ def main():
     elif choice == "Create, Build and Deploy":
         app()
     elif choice == "Interact with Smart Contract":
-        
         analysis()
     elif choice == "About":
         #st.title("About")

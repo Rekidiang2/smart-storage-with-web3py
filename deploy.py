@@ -1,5 +1,4 @@
 import json
-
 from web3 import Web3
 
 # In the video, we forget to `install_solc`
