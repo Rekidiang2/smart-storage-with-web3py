@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from web3 import Web3
 from PIL import Image
 from deploy import *
-
 # == Logo
 def logo():
     # source: jason-leung from unsplash
